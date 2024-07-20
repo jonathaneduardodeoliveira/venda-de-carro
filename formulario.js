@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const email = document.getElementById('emailInput').value;
         const telefone = document.getElementById('celularInput').value;
 
+        console.log('Nome:', nome);
+        console.log('Email:', email);
+        console.log('Telefone:', telefone);
+
         // Enviar os dados para o PHP via AJAX
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'formulario.php', true);
@@ -22,10 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    // Verificar a resposta do servidor e exibir a mensagem apropriada
                     const response = xhr.responseText;
+                    console.log('Resposta do servidor:', response);
                     if (response === 'success') {
                         alert('Registro inserido com sucesso!');
+                        formContainer.style.display = 'none'; // Opcional: Ocultar o formulário após sucesso
                     } else {
                         alert('Erro ao inserir registro. Tente novamente mais tarde ou entre em contato com o desenvolvedor do site.');
                     }
